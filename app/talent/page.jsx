@@ -195,111 +195,120 @@ export default function TalentBoard() {
           style={{ display: "flex", justifyContent: "center", alignItems: "flex-end", flexWrap: "wrap", gap: "1rem", marginBottom: "2.5rem" }}
         >
           {/* 2nd Place */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            whileHover={{ y: -5 }}
-            style={{
-              background: "#fff",
-              borderRadius: 20,
-              padding: "1.5rem",
-              width: 200,
-              textAlign: "center",
-              border: "1px solid rgba(156,163,175,0.2)",
-              boxShadow: "0 4px 20px rgba(156,163,175,0.1)",
-            }}
-          >
-            <div style={{
-              width: 48, height: 48, borderRadius: "50%",
-              background: `linear-gradient(135deg, #9CA3AF, #D1D5DB)`,
-              display: "flex", alignItems: "center", justifyContent: "center",
-              margin: "0 auto 0.75rem",
-              boxShadow: "0 4px 12px rgba(156,163,175,0.3)",
-            }}>
-              <Medal size={24} color="#fff" />
-            </div>
-            <p style={{ fontSize: "0.7rem", color: INK_LIGHT, fontWeight: 700, margin: "0 0 0.25rem", textTransform: "uppercase", letterSpacing: "0.05em" }}>2nd Place</p>
-            <p style={{ fontSize: "1rem", fontWeight: 800, color: INK, margin: "0 0 0.15rem" }}>{top3[1].name}</p>
-            <p style={{ fontSize: "0.78rem", color: INK_LIGHT, margin: "0 0 0.5rem" }}>{top3[1].role}</p>
-            <div style={{ display: "flex", justifyContent: "center", gap: "0.75rem" }}>
-              <span style={{ fontSize: "0.75rem", fontWeight: 700, color: PURPLE }}>{top3[1].commits} commits</span>
-            </div>
-          </motion.div>
+          <Link href={`/profile/${top3[1]?.id}`} style={{ textDecoration: "none", color: "inherit" }}>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              whileHover={{ y: -5 }}
+              style={{
+                background: "#fff",
+                borderRadius: 20,
+                padding: "1.5rem",
+                width: 200,
+                textAlign: "center",
+                border: "1px solid rgba(156,163,175,0.2)",
+                boxShadow: "0 4px 20px rgba(156,163,175,0.1)",
+                cursor: "pointer",
+              }}
+            >
+              <div style={{
+                width: 48, height: 48, borderRadius: "50%",
+                background: `linear-gradient(135deg, #9CA3AF, #D1D5DB)`,
+                display: "flex", alignItems: "center", justifyContent: "center",
+                margin: "0 auto 0.75rem",
+                boxShadow: "0 4px 12px rgba(156,163,175,0.3)",
+              }}>
+                <Medal size={24} color="#fff" />
+              </div>
+              <p style={{ fontSize: "0.7rem", color: INK_LIGHT, fontWeight: 700, margin: "0 0 0.25rem", textTransform: "uppercase", letterSpacing: "0.05em" }}>2nd Place</p>
+              <p style={{ fontSize: "1rem", fontWeight: 800, color: INK, margin: "0 0 0.15rem" }}>{top3[1]?.name}</p>
+              <p style={{ fontSize: "0.78rem", color: INK_LIGHT, margin: "0 0 0.5rem" }}>{top3[1]?.role}</p>
+              <div style={{ display: "flex", justifyContent: "center", gap: "0.75rem" }}>
+                <span style={{ fontSize: "0.75rem", fontWeight: 700, color: PURPLE }}>{top3[1]?.commits} commits</span>
+              </div>
+            </motion.div>
+          </Link>
 
           {/* 1st Place */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            whileHover={{ y: -5 }}
-            style={{
-              background: "#fff",
-              borderRadius: 24,
-              padding: "2rem 1.5rem",
-              width: 220,
-              textAlign: "center",
-              border: "2px solid rgba(245,158,11,0.3)",
-              boxShadow: "0 8px 32px rgba(245,158,11,0.15)",
-              position: "relative",
-            }}
-          >
-            <div style={{
-              position: "absolute", top: -12, left: "50%", transform: "translateX(-50%)",
-              padding: "0.25rem 0.75rem", borderRadius: 999,
-              background: `linear-gradient(135deg, #F59E0B, #FBBF24)`,
-              fontSize: "0.65rem", fontWeight: 800, color: "#fff",
-            }}>
-              CHAMPION
-            </div>
-            <div style={{
-              width: 56, height: 56, borderRadius: "50%",
-              background: `linear-gradient(135deg, #F59E0B, #FBBF24)`,
-              display: "flex", alignItems: "center", justifyContent: "center",
-              margin: "0 auto 0.75rem",
-              boxShadow: "0 4px 16px rgba(245,158,11,0.3)",
-            }}>
-              <Crown size={28} color="#fff" />
-            </div>
-            <p style={{ fontSize: "1.15rem", fontWeight: 800, color: INK, margin: "0 0 0.15rem" }}>{top3[0].name}</p>
-            <p style={{ fontSize: "0.8rem", color: INK_LIGHT, margin: "0 0 0.5rem" }}>{top3[0].role} @ {top3[0].company}</p>
-            <div style={{ display: "flex", justifyContent: "center", gap: "1rem" }}>
-              <span style={{ fontSize: "0.8rem", fontWeight: 700, color: GREEN }}>{top3[0].attendance}% attendance</span>
-            </div>
-          </motion.div>
+          <Link href={`/profile/${top3[0]?.id}`} style={{ textDecoration: "none", color: "inherit" }}>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              whileHover={{ y: -5 }}
+              style={{
+                background: "#fff",
+                borderRadius: 24,
+                padding: "2rem 1.5rem",
+                width: 220,
+                textAlign: "center",
+                border: "2px solid rgba(245,158,11,0.3)",
+                boxShadow: "0 8px 32px rgba(245,158,11,0.15)",
+                position: "relative",
+                cursor: "pointer",
+              }}
+            >
+              <div style={{
+                position: "absolute", top: -12, left: "50%", transform: "translateX(-50%)",
+                padding: "0.25rem 0.75rem", borderRadius: 999,
+                background: `linear-gradient(135deg, #F59E0B, #FBBF24)`,
+                fontSize: "0.65rem", fontWeight: 800, color: "#fff",
+              }}>
+                CHAMPION
+              </div>
+              <div style={{
+                width: 56, height: 56, borderRadius: "50%",
+                background: `linear-gradient(135deg, #F59E0B, #FBBF24)`,
+                display: "flex", alignItems: "center", justifyContent: "center",
+                margin: "0 auto 0.75rem",
+                boxShadow: "0 4px 16px rgba(245,158,11,0.3)",
+              }}>
+                <Crown size={28} color="#fff" />
+              </div>
+              <p style={{ fontSize: "1.15rem", fontWeight: 800, color: INK, margin: "0 0 0.15rem" }}>{top3[0]?.name}</p>
+              <p style={{ fontSize: "0.8rem", color: INK_LIGHT, margin: "0 0 0.5rem" }}>{top3[0]?.role} @ {top3[0]?.company}</p>
+              <div style={{ display: "flex", justifyContent: "center", gap: "1rem" }}>
+                <span style={{ fontSize: "0.8rem", fontWeight: 700, color: GREEN }}>{top3[0]?.attendance}% attendance</span>
+              </div>
+            </motion.div>
+          </Link>
 
           {/* 3rd Place */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-            whileHover={{ y: -5 }}
-            style={{
-              background: "#fff",
-              borderRadius: 20,
-              padding: "1.5rem",
-              width: 200,
-              textAlign: "center",
-              border: "1px solid rgba(180,83,9,0.2)",
-              boxShadow: "0 4px 20px rgba(180,83,9,0.08)",
-            }}
-          >
-            <div style={{
-              width: 48, height: 48, borderRadius: "50%",
-              background: `linear-gradient(135deg, #B45309, #D97706)`,
-              display: "flex", alignItems: "center", justifyContent: "center",
-              margin: "0 auto 0.75rem",
-              boxShadow: "0 4px 12px rgba(180,83,9,0.3)",
-            }}>
-              <Award size={24} color="#fff" />
-            </div>
-            <p style={{ fontSize: "0.7rem", color: INK_LIGHT, fontWeight: 700, margin: "0 0 0.25rem", textTransform: "uppercase", letterSpacing: "0.05em" }}>3rd Place</p>
-            <p style={{ fontSize: "1rem", fontWeight: 800, color: INK, margin: "0 0 0.15rem" }}>{top3[2].name}</p>
-            <p style={{ fontSize: "0.78rem", color: INK_LIGHT, margin: "0 0 0.5rem" }}>{top3[2].role}</p>
-            <div style={{ display: "flex", justifyContent: "center", gap: "0.75rem" }}>
-              <span style={{ fontSize: "0.75rem", fontWeight: 700, color: PURPLE }}>{top3[2].sprints} sprints</span>
-            </div>
-          </motion.div>
+          <Link href={`/profile/${top3[2]?.id}`} style={{ textDecoration: "none", color: "inherit" }}>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+              whileHover={{ y: -5 }}
+              style={{
+                background: "#fff",
+                borderRadius: 20,
+                padding: "1.5rem",
+                width: 200,
+                textAlign: "center",
+                border: "1px solid rgba(180,83,9,0.2)",
+                boxShadow: "0 4px 20px rgba(180,83,9,0.08)",
+                cursor: "pointer",
+              }}
+            >
+              <div style={{
+                width: 48, height: 48, borderRadius: "50%",
+                background: `linear-gradient(135deg, #B45309, #D97706)`,
+                display: "flex", alignItems: "center", justifyContent: "center",
+                margin: "0 auto 0.75rem",
+                boxShadow: "0 4px 12px rgba(180,83,9,0.3)",
+              }}>
+                <Award size={24} color="#fff" />
+              </div>
+              <p style={{ fontSize: "0.7rem", color: INK_LIGHT, fontWeight: 700, margin: "0 0 0.25rem", textTransform: "uppercase", letterSpacing: "0.05em" }}>3rd Place</p>
+              <p style={{ fontSize: "1rem", fontWeight: 800, color: INK, margin: "0 0 0.15rem" }}>{top3[2]?.name}</p>
+              <p style={{ fontSize: "0.78rem", color: INK_LIGHT, margin: "0 0 0.5rem" }}>{top3[2]?.role}</p>
+              <div style={{ display: "flex", justifyContent: "center", gap: "0.75rem" }}>
+                <span style={{ fontSize: "0.75rem", fontWeight: 700, color: PURPLE }}>{top3[2]?.sprints} sprints</span>
+              </div>
+            </motion.div>
+          </Link>
         </motion.div>
 
         {/* Filters & Search */}

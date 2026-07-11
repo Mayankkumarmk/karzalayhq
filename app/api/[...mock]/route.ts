@@ -149,7 +149,7 @@ async function handleRequest(request: NextRequest) {
 
   // --- CREDENTIAL VERIFICATION MOCK API ---
   if (pathname.startsWith('/api/verify/') && request.method === 'GET') {
-    const userId = pathname.split('/').pop();
+    const userId = pathname.split('/').pop() || '';
     
     if (userId === 'not-found') {
       return NextResponse.json({ error: 'Credential not found' }, { status: 404 });
@@ -170,12 +170,42 @@ async function handleRequest(request: NextRequest) {
       };
     });
 
+    // Dynamic resolution of Name, Role, Company based on ID
+    let name = "Sarah Chen";
+    let role = "Backend Lead";
+    let company = "Nexus UI";
+
+    if (userId) {
+      const cleanId = userId.startsWith('kz-') ? userId.slice(3) : userId;
+      name = cleanId
+        .split('-')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ');
+        
+      if (cleanId.includes('design') || cleanId.includes('johnson')) role = 'Product Designer';
+      else if (cleanId.includes('architect') || cleanId.includes('rivera')) role = 'Frontend Architect';
+      else if (cleanId.includes('frontend') || cleanId.includes('doe') || cleanId.includes('deshmukh')) role = 'Frontend Developer';
+      else if (cleanId.includes('backend') || cleanId.includes('chen') || cleanId.includes('nair')) role = 'Backend Developer';
+      else if (cleanId.includes('mobile') || cleanId.includes('kapoor')) role = 'Mobile Developer';
+      else if (cleanId.includes('founder') || cleanId.includes('bora')) role = 'Founder & Lead Developer';
+      else if (cleanId.includes('database') || cleanId.includes('gupta') || cleanId.includes('db')) role = 'Database Administrator';
+      else role = 'Developer';
+
+      if (cleanId.includes('bora') || cleanId.includes('deshmukh') || cleanId.includes('nair') || cleanId.includes('kapoor')) {
+        company = 'Raasta Maps';
+      } else if (cleanId.includes('rivera') || cleanId.includes('forge')) {
+        company = 'CodeForge';
+      } else if (cleanId.includes('gupta') || cleanId.includes('perfect')) {
+        company = 'PixelPerfect';
+      }
+    }
+
     // Return a rich payload for the credential
     return NextResponse.json({
       id: userId,
-      name: userId === 'kz-mike-johnson' ? 'Mike Johnson' : userId === 'kz-john-doe' ? 'John Doe' : 'Sarah Chen',
-      role: userId === 'kz-mike-johnson' ? 'Designer' : userId === 'kz-john-doe' ? 'Frontend Dev' : 'Backend Lead',
-      company: 'Nexus UI',
+      name,
+      role,
+      company,
       attendanceScore: userId === 'kz-mike-johnson' ? 85 : 98,
       commitCount: userId === 'kz-mike-johnson' ? 420 : 1420,
       duration: '8 Months',

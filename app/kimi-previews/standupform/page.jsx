@@ -35,6 +35,8 @@ const ORANGE = "#EA580C";
 const ORANGE_SOFT = "#FFF7ED";
 const RED = "#DC2626";
 const RED_SOFT = "#FEF2F2";
+const BLUE = "#2563EB";
+const BLUE_SOFT = "#EFF6FF";
 
 const gradientText = {
   background: "linear-gradient(135deg, #5B3FF8 0%, #8B5CF6 50%, #A78BFA 100%)",
@@ -230,7 +232,7 @@ export default function StandupForm() {
             >
               <CheckCircle2 size={40} color={GREEN} />
             </motion.div>
-            <Eyebone>Already Submitted</Eyebone>
+            <Eyebrow>Already Submitted</Eyebrow>
             <h2 style={{ fontSize: "1.4rem", fontWeight: 800, color: INK, margin: "0.5rem 0 0.5rem" }}>
               Standup Complete
             </h2>

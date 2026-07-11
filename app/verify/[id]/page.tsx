@@ -70,7 +70,7 @@ export default async function CredentialPage({ params }: CredentialProps) {
       
       <div style={{ maxWidth: 800, margin: '0 auto', padding: '3rem 1.5rem 6rem' }}>
         {/* Back Link */}
-        <Link href={`/cities/raasta-maps`} style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", color: INK_LIGHT, textDecoration: "none", fontSize: "0.85rem", fontWeight: 600, marginBottom: "2rem" }}>
+        <Link href={`/cities/${credential.company.toLowerCase().replace(/\s+/g, '-')}`} style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", color: INK_LIGHT, textDecoration: "none", fontSize: "0.85rem", fontWeight: 600, marginBottom: "2rem" }}>
           <ArrowLeft size={16} /> Back to {credential.company}
         </Link>
 

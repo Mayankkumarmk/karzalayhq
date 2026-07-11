@@ -791,3 +791,24 @@ button {
   box-shadow: 0 22px 44px rgba(108, 60, 224, 0.16); 
   border-color: rgba(108, 60, 224, 0.35) !important; 
 }
+
+/* GlassCard styling with responsive padding */
+.kz-glass-card {
+  padding: 2.5rem;
+}
+
+@media (max-width: 640px) {
+  .kz-glass-card {
+    padding: 1.5rem 1rem !important;
+  }
+}
+
+/* Hide scrollbar utility */
+.hide-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari and Opera */
+}
+

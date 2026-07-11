@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { Navbar } from '@/components/ui/Navbar';
@@ -33,10 +33,10 @@ const COMPANIES_DATA: Record<string, any> = {
     ],
     techStack: ['React Native', 'Node.js', 'Mapbox', 'MongoDB', 'Socket.io', 'Redis'],
     team: [
-      { name: 'Mriganshu Bora', role: 'Founder & Lead Developer', attendance: 98, commits: 512, avatar: 'M' },
-      { name: 'Priya Deshmukh', role: 'Frontend Developer', attendance: 94, commits: 247, avatar: 'P' },
-      { name: 'Arjun Nair', role: 'Backend Developer', attendance: 91, commits: 198, avatar: 'A' },
-      { name: 'Neha Kapoor', role: 'Mobile Developer', attendance: 96, commits: 231, avatar: 'N' }
+      { name: 'Mriganshu Bora', role: 'Founder & Lead Developer', attendance: 98, commits: 512, avatar: 'M', id: 'kz-mriganshu-bora' },
+      { name: 'Priya Deshmukh', role: 'Frontend Developer', attendance: 94, commits: 247, avatar: 'P', id: 'kz-priya-deshmukh' },
+      { name: 'Arjun Nair', role: 'Backend Developer', attendance: 91, commits: 198, avatar: 'A', id: 'kz-arjun-nair' },
+      { name: 'Neha Kapoor', role: 'Mobile Developer', attendance: 96, commits: 231, avatar: 'N', id: 'kz-neha-kapoor' }
     ],
     openRoles: [
       {
@@ -70,6 +70,23 @@ export default function CompanyPage() {
   const companyId = params.id as string;
   const company = COMPANIES_DATA[companyId] || COMPANIES_DATA['raasta-maps']; // fallback for preview
   const [teamIndex, setTeamIndex] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const scrollToSlide = (idx: number) => {
+    if (containerRef.current) {
+      containerRef.current.scrollTo({
+        left: idx * containerRef.current.clientWidth,
+        behavior: 'smooth'
+      });
+      setTeamIndex(idx);
+    }
+  };
+
+  const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    const container = e.currentTarget;
+    const index = Math.round(container.scrollLeft / container.clientWidth);
+    setTeamIndex(index);
+  };
 
   return (
     <div style={{ minHeight: "100vh", background: "#FAFAFA", fontFamily: "Inter, sans-serif" }}>
@@ -148,27 +165,56 @@ export default function CompanyPage() {
             <Users size={20} color={ORANGE} /> Team
           </h2>
           <div style={{ position: "relative", overflow: "hidden", padding: "0.5rem 0" }}>
-            <div style={{ 
-              display: "flex", 
-              transition: "transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1)", 
-              transform: `translateX(-${teamIndex * 100}%)`,
-              width: `${company.team.length * 100}%` 
-            }}>
+            <div 
+              ref={containerRef}
+              onScroll={handleScroll}
+              className="hide-scrollbar"
+              style={{ 
+                display: "flex", 
+                overflowX: "auto",
+                scrollSnapType: "x mandatory",
+                WebkitOverflowScrolling: "touch",
+                scrollBehavior: "smooth",
+                gap: "1rem"
+              }}
+            >
               {company.team.map((member: any) => (
-                <div key={member.name} style={{ width: `${100 / company.team.length}%`, padding: "0 0.2rem" }}>
-                  <div style={{ background: "#fff", border: "1px solid rgba(91,63,248,0.1)", borderRadius: 16, padding: "1.25rem", display: "flex", gap: "1rem", alignItems: "center", boxShadow: "0 4px 12px rgba(91,63,248,0.03)" }}>
-                    <div style={{ width: 48, height: 48, borderRadius: 12, background: PURPLE_XSOFT, display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1.2rem", fontWeight: 800, color: PURPLE, flexShrink: 0 }}>
-                      {member.avatar}
-                    </div>
-                    <div>
-                      <h4 style={{ fontSize: "0.95rem", fontWeight: 700, color: INK, margin: "0 0 0.15rem" }}>{member.name}</h4>
-                      <p style={{ fontSize: "0.8rem", color: INK_LIGHT, margin: "0 0 0.4rem" }}>{member.role}</p>
-                      <div style={{ display: "flex", gap: "0.75rem", fontSize: "0.75rem", color: INK_MID, fontWeight: 500 }}>
-                        <span>{member.attendance}% attendance</span>
-                        <span>{member.commits} commits</span>
+                <div key={member.name} style={{ width: "100%", flexShrink: 0, scrollSnapAlign: "start", padding: "0 0.1rem" }}>
+                  <Link href={`/profile/${member.id}`} style={{ textDecoration: "none", display: "block" }}>
+                    <div style={{ 
+                      background: "#fff", 
+                      border: "1px solid rgba(91,63,248,0.1)", 
+                      borderRadius: 16, 
+                      padding: "1.25rem", 
+                      display: "flex", 
+                      gap: "1rem", 
+                      alignItems: "center", 
+                      boxShadow: "0 4px 12px rgba(91,63,248,0.03)",
+                      transition: "border-color 0.2s, transform 0.2s",
+                      cursor: "pointer"
+                    }}
+                    onMouseEnter={e => {
+                      e.currentTarget.style.borderColor = PURPLE;
+                      e.currentTarget.style.transform = "translateY(-2px)";
+                    }}
+                    onMouseLeave={e => {
+                      e.currentTarget.style.borderColor = "rgba(91,63,248,0.1)";
+                      e.currentTarget.style.transform = "translateY(0)";
+                    }}
+                    >
+                      <div style={{ width: 48, height: 48, borderRadius: 12, background: PURPLE_XSOFT, display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1.2rem", fontWeight: 800, color: PURPLE, flexShrink: 0 }}>
+                        {member.avatar}
+                      </div>
+                      <div>
+                        <h4 style={{ fontSize: "0.95rem", fontWeight: 700, color: INK, margin: "0 0 0.15rem" }}>{member.name}</h4>
+                        <p style={{ fontSize: "0.8rem", color: INK_LIGHT, margin: "0 0 0.4rem" }}>{member.role}</p>
+                        <div style={{ display: "flex", gap: "0.75rem", fontSize: "0.75rem", color: INK_MID, fontWeight: 500 }}>
+                          <span>{member.attendance}% attendance</span>
+                          <span>{member.commits} commits</span>
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  </Link>
                 </div>
               ))}
             </div>
@@ -177,7 +223,7 @@ export default function CompanyPage() {
             {company.team.map((_: any, idx: number) => (
               <button 
                 key={idx} 
-                onClick={() => setTeamIndex(idx)} 
+                onClick={() => scrollToSlide(idx)} 
                 style={{ width: 8, height: 8, borderRadius: "50%", background: teamIndex === idx ? PURPLE : "rgba(91,63,248,0.2)", border: "none", cursor: "pointer", padding: 0 }} 
                 aria-label={`Go to slide ${idx + 1}`}
               />

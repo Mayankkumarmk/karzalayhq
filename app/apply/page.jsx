@@ -205,12 +205,12 @@ function GlassCard({ children, style = {} }) {
       animate={{ opacity: 1, y: 0, rotateX: 0 }}
       exit={{ opacity: 0, y: -20, rotateX: -2 }}
       transition={{ duration: 0.4, ease: [0.34, 1.56, 0.64, 1] }}
+      className="kz-glass-card"
       style={{
         background: "#fff",
         borderRadius: 20,
         border: "1px solid rgba(91,63,248,0.12)",
         boxShadow: cardShadow,
-        padding: "2.5rem",
         maxWidth: 640,
         margin: "0 auto",
         position: "relative",
@@ -953,7 +953,7 @@ function ApplyContent() {
                             <label style={{ fontSize: "0.85rem", fontWeight: 700, color: INK_MID, marginBottom: "0.4rem", display: "block" }}>Full Name *</label>
                             <KzInput value={name} onChange={e => setName(e.target.value)} required />
                           </div>
-                          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "1rem" }}>
+                          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "1rem" }}>
                             <div>
                               <label style={{ fontSize: "0.85rem", fontWeight: 700, color: INK_MID, marginBottom: "0.4rem", display: "block" }}>Email *</label>
                               <KzInput value={memberEmail} onChange={e => setMemberEmail(e.target.value)} type="email" required />
@@ -977,7 +977,7 @@ function ApplyContent() {
                             <label style={{ fontSize: "0.85rem", fontWeight: 700, color: INK_MID, marginBottom: "0.4rem", display: "block" }}>College / University *</label>
                             <KzInput value={memberCollege} onChange={e => setMemberCollege(e.target.value)} placeholder="e.g. Stanford University" icon={Building2} required />
                           </div>
-                          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "1rem" }}>
+                          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "1rem" }}>
                             <div>
                               <label style={{ fontSize: "0.85rem", fontWeight: 700, color: INK_MID, marginBottom: "0.4rem", display: "block" }}>Current Qualification *</label>
                               <KzInput value={memberQualification} onChange={e => setMemberQualification(e.target.value)} placeholder="e.g. B.Tech CS" icon={FileText} required />
@@ -997,7 +997,7 @@ function ApplyContent() {
                       <div style={{ paddingBottom: "1rem", borderBottom: `1px solid rgba(91,63,248,0.15)` }}>
                         <h3 style={{ fontSize: "1.05rem", fontWeight: 700, color: INK, marginBottom: "1rem" }}>Tech Profiles & Skills</h3>
                         <div style={{ display: "grid", gap: "1rem" }}>
-                          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "1rem" }}>
+                          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "1rem" }}>
                             <div>
                               <label style={{ fontSize: "0.85rem", fontWeight: 700, color: INK_MID, marginBottom: "0.4rem", display: "block" }}>GitHub Profile (optional)</label>
                               <KzInput value={memberGithub} onChange={e => setMemberGithub(e.target.value)} placeholder="github.com/..." />
@@ -1038,7 +1038,7 @@ function ApplyContent() {
 
                         {hasExperience && (
                           <div style={{ display: "grid", gap: "1rem", marginTop: "1rem", padding: "1.25rem", background: "#F8F7FC", borderRadius: 12, border: "1.5px solid rgba(91,63,248,0.15)" }}>
-                            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "1rem" }}>
+                            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "1rem" }}>
                               <div>
                                 <label style={{ fontSize: "0.85rem", fontWeight: 700, color: INK_MID, marginBottom: "0.4rem", display: "block" }}>Company / Org Name *</label>
                                 <KzInput value={expCompany} onChange={e => setExpCompany(e.target.value)} placeholder="e.g. Acme Corp" required={hasExperience} />
@@ -1123,7 +1123,7 @@ function ApplyContent() {
 
                           <form onSubmit={handleMemberApply} style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
                             
-                            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "1rem" }}>
+                            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "1rem" }}>
                               <div>
                                 <label style={{ fontSize: "0.85rem", fontWeight: 700, color: INK_MID, marginBottom: "0.4rem", display: "block" }}>Select a Company *</label>
                                 <select 
