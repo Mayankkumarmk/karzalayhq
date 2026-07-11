@@ -1,27 +1,16 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { CredentialCard, CredentialData } from '@/components/ui/CredentialCard';
+import { CredentialCard } from '@/components/ui/CredentialCard';
 import { Navbar } from '@/components/ui/Navbar';
 import { ArrowLeft, Calendar, Building2, CheckCircle2 } from 'lucide-react';
+import { getMockCredential, CredentialData } from '@/components/mockData';
 
 interface CredentialProps {
   params: Promise<{ id: string }>;
 }
 
 async function getCredential(id: string): Promise<CredentialData | null> {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL 
-    ? process.env.NEXT_PUBLIC_SITE_URL 
-    : process.env.VERCEL_URL 
-      ? `https://${process.env.VERCEL_URL}` 
-      : 'http://localhost:3000';
-  const res = await fetch(`${baseUrl}/api/verify/${id}`, { cache: 'no-store' });
-  
-  if (!res.ok) {
-    if (res.status === 404) return null;
-    throw new Error('Failed to fetch credential');
-  }
-  
-  return res.json();
+  return getMockCredential(id);
 }
 
 export async function generateMetadata({ params }: CredentialProps): Promise<Metadata> {
