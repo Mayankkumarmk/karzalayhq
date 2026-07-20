@@ -4,18 +4,28 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-  "dev": "ts-node src/index.ts",
-  "build": "tsc",
-  "start": "node dist/index.js"
-},
+    "dev": "prisma generate && ts-node src/index.ts",
+  "dev:start": "ts-node src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "db:generate": "prisma generate",
+    "db:migrate": "prisma migrate dev",
+    "db:studio": "prisma studio"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
-    "fastify": "^5.8.5"
+    "@fastify/cookie": "^11.0.2",
+    "@fastify/session": "^11.1.1",
+    "@prisma/client": "^6.19.3",
+    "bcrypt": "^6.0.0",
+    "fastify": "^5.8.5",
+    "prisma": "^6.19.3"
   },
   "devDependencies": {
+    "@types/bcrypt": "^6.0.0",
     "@types/node": "^25.9.1",
     "ts-node": "^10.9.2",
     "typescript": "^6.0.3"
