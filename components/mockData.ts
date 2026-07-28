@@ -1,3 +1,13 @@
+/* ═══════════════════════════════════════════
+ * File: components/mockData.ts
+ * Purpose: Provides realistic fixture data for components (e.g. CredentialCard) during development and preview.
+ * Design Decisions:
+ * - Mocks cryptographic signatures and activity arrays so the UI can be built independently of backend readiness.
+ * - Dynamic generation based on the passed ID to simulate varied data.
+ * Tokens Used: N/A (Data layer only)
+ * Component Connections:
+ * - Read by Profile and Verify pages.
+ * ═══════════════════════════════════════════ */
 export interface CredentialData {
   id: string;
   name: string;

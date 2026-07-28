@@ -1,5 +1,17 @@
 "use client";
 
+/* ═══════════════════════════════════════════
+ * File: app/register/page.tsx
+ * Purpose: Registration form for new users.
+ * Design Decisions:
+ * - Simple card layout using global .auth-* utility classes to mimic the rest of the application's auth UI.
+ * - Client-side field validation to reduce unnecessary network requests.
+ * Tokens Used:
+ * - var(--destructive) used for error states.
+ * Component Connections:
+ * - Redirects to /onboarding after successful registration via AuthContext.
+ * ═══════════════════════════════════════════ */
+
 import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";

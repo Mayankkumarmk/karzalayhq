@@ -41,6 +41,11 @@ async function handleRequest(request: NextRequest) {
   };
 
   if (pathname === '/api/auth/login' && request.method === 'POST') {
+    // ══════════════════════════════════════════════════════════════════════════
+    // BACKEND DEVELOPER INTEGRATION:
+    // Here is the mock data. By this, these are the things that are redirecting to the next steps.
+    // Replace this mock response with your actual backend database API call to authenticate the user and return user data.
+    // ══════════════════════════════════════════════════════════════════════════
     const res = NextResponse.json({ id: '1', name: 'Mock User', email: payload.email, role: 'MEMBER' });
     res.cookies.set('sessionId', 'mock_session', { path: '/', httpOnly: true });
     if (!request.cookies.has('mockGate')) {
@@ -52,6 +57,11 @@ async function handleRequest(request: NextRequest) {
   }
   
   if (pathname === '/api/auth/register' && request.method === 'POST') {
+    // ══════════════════════════════════════════════════════════════════════════
+    // BACKEND DEVELOPER INTEGRATION:
+    // Here is the mock data. By this, these are the things that are redirecting to the next steps.
+    // Replace this mock registration response with your actual backend API database insert, and return the new user object.
+    // ══════════════════════════════════════════════════════════════════════════
     const res = NextResponse.json({ id: '1', name: payload.name, email: payload.email, role: payload.role || 'MEMBER' }, { status: 201 });
     res.cookies.set('mockRole', payload.role || 'MEMBER', { path: '/' });
     res.cookies.set('mockName', payload.name || 'Mock User', { path: '/' });
@@ -59,6 +69,11 @@ async function handleRequest(request: NextRequest) {
   }
 
   if (pathname === '/api/auth/me') {
+    // ══════════════════════════════════════════════════════════════════════════
+    // BACKEND DEVELOPER INTEGRATION:
+    // Here is the mock data. By this, these are the things that are redirecting to the next steps.
+    // Replace this verification logic with a call to verify the session token from your database or JWT, returning the logged-in user profile.
+    // ══════════════════════════════════════════════════════════════════════════
     const cookie = request.cookies.get('sessionId')?.value;
     const roleCookie = request.cookies.get('mockRole')?.value || 'MEMBER';
     const nameCookie = request.cookies.get('mockName')?.value || 'Mock User';
@@ -76,10 +91,20 @@ async function handleRequest(request: NextRequest) {
   }
 
   if (pathname === '/api/onboarding/status') {
+    // ══════════════════════════════════════════════════════════════════════════
+    // BACKEND DEVELOPER INTEGRATION:
+    // Here is the mock data. By this, these are the things that are redirecting to the next steps.
+    // Replace this with a query to fetch the user's actual onboarding gate status from the database.
+    // ══════════════════════════════════════════════════════════════════════════
     return NextResponse.json({ gate: currentGate, status: currentGate > 3 ? 'completed' : 'pending' });
   }
 
   if (pathname === '/api/users/me' && request.method === 'PATCH') {
+    // ══════════════════════════════════════════════════════════════════════════
+    // BACKEND DEVELOPER INTEGRATION:
+    // Here is the mock data. By this, these are the things that are redirecting to the next steps.
+    // Replace this with a database update statement to save the user's name, role, and progress to Gate 2.
+    // ══════════════════════════════════════════════════════════════════════════
     const res = createResWithGate({ success: true }, 2);
     if (payload.role) {
       res.cookies.set('mockRole', payload.role, { path: '/' });
@@ -98,6 +123,11 @@ async function handleRequest(request: NextRequest) {
   }
 
   if (pathname === '/api/applications' && request.method === 'POST') {
+    // ══════════════════════════════════════════════════════════════════════════
+    // BACKEND DEVELOPER INTEGRATION:
+    // Here is the mock data. By this, these are the things that are redirecting to the next steps.
+    // Replace this with an application insert in the database, associating the user with the company they chose.
+    // ══════════════════════════════════════════════════════════════════════════
     // Keep gate at 2 to simulate waiting for approval
     return NextResponse.json({ success: true });
   }
@@ -108,10 +138,20 @@ async function handleRequest(request: NextRequest) {
   }
 
   if (pathname === '/api/startups' && request.method === 'POST') {
+    // ══════════════════════════════════════════════════════════════════════════
+    // BACKEND DEVELOPER INTEGRATION:
+    // Here is the mock data. By this, these are the things that are redirecting to the next steps.
+    // Replace this with a new company record insert, setting the user's company ID, and updating the user gate to 3.
+    // ══════════════════════════════════════════════════════════════════════════
     return createResWithGate({ success: true }, 3);
   }
 
   if (pathname === '/api/onboarding/complete' && request.method === 'POST') {
+    // ══════════════════════════════════════════════════════════════════════════
+    // BACKEND DEVELOPER INTEGRATION:
+    // Here is the mock data. By this, these are the things that are redirecting to the next steps.
+    // Replace this with a database update setting the user's gate to 4 (onboarding complete).
+    // ══════════════════════════════════════════════════════════════════════════
     return createResWithGate({ success: true }, 4);
   }
 
@@ -135,6 +175,11 @@ async function handleRequest(request: NextRequest) {
   }
 
   if (pathname === '/api/standups' && request.method === 'POST') {
+    // ══════════════════════════════════════════════════════════════════════════
+    // BACKEND DEVELOPER INTEGRATION:
+    // Here is the mock data. By this, these are the things that are redirecting to the next steps.
+    // Replace this with an insert to your database standups table.
+    // ══════════════════════════════════════════════════════════════════════════
     const today = getCurrentDateKey();
     
     if (!payload.yesterday || !payload.today || !payload.blockers) {

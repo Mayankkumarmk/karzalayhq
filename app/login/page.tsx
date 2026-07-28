@@ -1,5 +1,17 @@
 "use client";
 
+/* ═══════════════════════════════════════════
+ * File: app/login/page.tsx
+ * Purpose: User authentication and login page.
+ * Design Decisions:
+ * - Uses a centered, card-based UI with `.auth-` prefixed global CSS classes for styling.
+ * - Client-side validation and loading states to give immediate feedback.
+ * Tokens Used:
+ * - Relies entirely on global CSS classes (from tokens.css/globals.css) rather than inline styles.
+ * Component Connections:
+ * - Consumes login from AuthContext.
+ * ═══════════════════════════════════════════ */
+
 import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";

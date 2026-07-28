@@ -1,5 +1,18 @@
 'use client';
 
+/* ═══════════════════════════════════════════
+ * File: components/ui/CredentialCard.tsx
+ * Purpose: Reusable card component to display a user's verified credentials.
+ * Design Decisions:
+ * - Highly stylized glassmorphism (backdrop-filter) and 3D glow effects.
+ * - Simulates a GitHub contribution graph using a dynamic color scale.
+ * Tokens Used:
+ * - Uses var(--text-muted), var(--foreground), var(--primary) for text.
+ * - Dynamic hex colors for the contribution graph (#0e4429, #006d32, #26a641) matching GitHub dark mode.
+ * Component Connections:
+ * - Used in Profile, Verify, and Landing pages.
+ * ═══════════════════════════════════════════ */
+
 import React from 'react';
 
 export interface CredentialData {

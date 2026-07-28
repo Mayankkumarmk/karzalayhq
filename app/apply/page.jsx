@@ -1,5 +1,18 @@
 "use client";
 
+/* ═══════════════════════════════════════════
+ * File: app/apply/page.jsx
+ * Purpose: Handles the user application flow to join specific startup cohorts.
+ * Design Decisions:
+ * - Reuses much of the visual logic from onboarding (Stepper, GlassCard) for consistency.
+ * - Relies heavily on conditional rendering based on the current 'gate' state.
+ * Tokens Used:
+ * - Similar to onboarding, uses PURPLE gradients for active buttons and selection borders.
+ * Component Connections:
+ * - Communicates with Socket.io for real-time approval updates from the Lead.
+ * - Posts application data to /api/applications.
+ * ═══════════════════════════════════════════ */
+
 import React, { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";

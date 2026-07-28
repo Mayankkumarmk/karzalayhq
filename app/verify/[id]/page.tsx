@@ -1,3 +1,13 @@
+/* ═══════════════════════════════════════════
+ * File: app/verify/[id]/page.tsx
+ * Purpose: Public verification page for cryptographically signed credentials.
+ * Design Decisions:
+ * - Duplicates the profile view's logic, intended as a standalone view specifically for verification by third-parties.
+ * Tokens Used:
+ * - Identical INK and PURPLE scheme to profile/[id].
+ * Component Connections:
+ * - Heavy reliance on CredentialCard component.
+ * ═══════════════════════════════════════════ */
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { CredentialCard } from '@/components/ui/CredentialCard';

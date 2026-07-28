@@ -1,5 +1,17 @@
 'use client';
 
+/* ═══════════════════════════════════════════
+ * File: app/cities/page.tsx
+ * Purpose: A browseable directory of all active company cohorts (sprints) across cities.
+ * Design Decisions:
+ * - Uses a flex wrap / grid layout for company cards.
+ * - Simple filtering state to sort companies by sector or hiring status.
+ * Tokens Used:
+ * - ORANGE for active filter states, PURPLE for hover outlines.
+ * Component Connections:
+ * - Links to individual company details at /cities/[id].
+ * ═══════════════════════════════════════════ */
+
 import React, { useState, useEffect, useMemo } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';

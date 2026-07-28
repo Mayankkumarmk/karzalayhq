@@ -1,3 +1,14 @@
+/* ═══════════════════════════════════════════
+ * File: app/profile/[id]/page.tsx
+ * Purpose: Public profile view showing a builder's verified credentials and stats.
+ * Design Decisions:
+ * - Static/server component structure when possible, fetching mock data asynchronously.
+ * - Utilizes the reusable CredentialCard component to show cryptographic verification.
+ * Tokens Used:
+ * - Hex variables (PURPLE, INK, GREEN_SOFT) match the rest of the app's visual identity.
+ * Component Connections:
+ * - Imports CredentialCard for the primary credential view.
+ * ═══════════════════════════════════════════ */
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { CredentialCard } from '@/components/ui/CredentialCard';

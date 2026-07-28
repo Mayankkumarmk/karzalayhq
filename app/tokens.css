@@ -1,3 +1,14 @@
+/* ═══════════════════════════════════════════
+ * File: app/tokens.css
+ * Purpose: Defines granular design tokens (spacing, typography scales, semantic colors) and legacy `.ds-*` classes.
+ * Design Decisions:
+ * - Represents an older "Academic Amethyst" theme profile.
+ * - Kept separate from globals.css to allow for easy theme swapping if needed.
+ * Tokens Used:
+ * - Defines its own set of raw CSS variables (e.g., `--color-primary`, `--spacing-16`).
+ * Component Connections:
+ * - Included globally, though most v2 components prefer the `--var` aliases in globals.css.
+ * ═══════════════════════════════════════════ */
 :root {
   /* Spacing Scale (Base unit 8px) */
   --spacing-4: 4px;

@@ -1,5 +1,19 @@
 'use client';
 
+/* ═══════════════════════════════════════════
+ * File: app/cities/[id]/page.tsx
+ * Purpose: Displays detailed information about a specific company/cohort in a city.
+ * Design Decisions:
+ * - Hardcoded styles and INK/PURPLE tokens used directly to mimic the landing page look.
+ * - Horizontal scrolling for the team members to save vertical space.
+ * Tokens Used:
+ * - Purples (PURPLE, PURPLE_SOFT, PURPLE_XSOFT)
+ * - Oranges (ORANGE) for accent headers.
+ * Component Connections:
+ * - Uses the global Navbar.
+ * - Links to /apply for specific roles.
+ * ═══════════════════════════════════════════ */
+
 import React, { useState, useRef } from 'react';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
@@ -164,7 +178,7 @@ export default function CompanyPage() {
           <h2 style={{ fontSize: "1.2rem", fontWeight: 800, color: INK, margin: "0 0 1rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
             <Users size={20} color={ORANGE} /> Team
           </h2>
-          <div style={{ position: "relative", overflow: "hidden", padding: "0.5rem 0" }}>
+          <div style={{ position: "relative", padding: "4px 0" }}>
             <div 
               ref={containerRef}
               onScroll={handleScroll}
@@ -175,11 +189,13 @@ export default function CompanyPage() {
                 scrollSnapType: "x mandatory",
                 WebkitOverflowScrolling: "touch",
                 scrollBehavior: "smooth",
-                gap: "1rem"
+                gap: "1rem",
+                padding: "8px 4px",
+                margin: "-4px 0"
               }}
             >
               {company.team.map((member: any) => (
-                <div key={member.name} style={{ width: "100%", flexShrink: 0, scrollSnapAlign: "start", padding: "0 0.1rem" }}>
+                <div key={member.name} style={{ width: "100%", flexShrink: 0, scrollSnapAlign: "start", padding: "4px 2px" }}>
                   <Link href={`/profile/${member.id}`} style={{ textDecoration: "none", display: "block" }}>
                     <div style={{ 
                       background: "#fff", 

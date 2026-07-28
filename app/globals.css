@@ -1,7 +1,15 @@
-/* ==============================
-   KARZALAY DESIGN SYSTEM — v2
-   Unified globals.css
-   ============================== */
+/* ═══════════════════════════════════════════
+ * File: app/globals.css
+ * Purpose: Core stylesheet defining global styles, CSS variables, typography, and base component classes (.kz-*).
+ * Design Decisions:
+ * - Employs a forced light-mode approach for consistency.
+ * - Heavily utilizes CSS clamp() for fluid typography.
+ * - Centralizes glassmorphism and animation keyframes.
+ * Tokens Used:
+ * - Core palette mapped to `--background`, `--foreground`, `--accent`, `--surface`, etc.
+ * Component Connections:
+ * - Directly applied across all pages and components.
+ * ═══════════════════════════════════════════ */
 
 :root {
   /* Light theme (forced — no dark mode override) */

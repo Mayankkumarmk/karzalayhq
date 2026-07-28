@@ -1,3 +1,17 @@
+/* ═══════════════════════════════════════════
+ * File: app/page.tsx
+ * Purpose: Serves as the landing page (Home) for Karzalay.
+ * Design Decisions: 
+ * - Hardcoded styles and inline CSS for rapid prototyping and standalone portability.
+ * - Uses a high-contrast visual hierarchy to emphasize calls to action (CTAs).
+ * - Implements fluid typography and dynamic CSS variables.
+ * Tokens Used: 
+ * - Purples (#6C3CE0, #7C4DFF, #F3F0FE) for primary branding.
+ * - Gradients and blurred orbs (radial-gradient) for depth and modern aesthetics.
+ * Component Connections:
+ * - Uses Navbar for top navigation.
+ * - Uses CredentialCard for the Verifiable Credentials preview section.
+ * ═══════════════════════════════════════════ */
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Navbar } from '@/components/ui/Navbar';
@@ -13,7 +27,8 @@ export default function HomePage() {
     <div style={{ fontFamily: 'var(--font-sans)', background: '#fff', color: '#1C1233', WebkitFontSmoothing: 'antialiased', overflowX: 'clip' }}>
       <Navbar />
 
-      {/* ── HERO ── */}
+      {/* ─── Hero Section ─── */}
+      {/* Design Decision: Uses absolute positioned blurred orbs for a dynamic background effect. */}
       <section style={{ position: 'relative', padding: '90px 40px 80px', maxWidth: '1240px', margin: '0 auto' }}>
         <div style={{ 
           position: 'absolute', top: '-40px', left: '-120px', width: '520px', height: '520px', 
@@ -103,7 +118,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── MARQUEE ── */}
+      {/* ─── Marquee Section ─── */}
+      {/* Creates a continuous sliding text effect to highlight key value props. */}
       <div style={{ overflow: 'hidden', borderTop: '1px solid rgba(28,18,51,0.07)', borderBottom: '1px solid rgba(28,18,51,0.07)', background: '#F6F4FF', padding: '15px 0' }}>
         <div style={{ display: 'flex', width: 'max-content', animation: 'kzMarquee 26s linear infinite', gap: '48px' }}>
           {[1, 2].map((group) => (
@@ -118,7 +134,8 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* ── 3 STEPS ── */}
+      {/* ─── 3 Steps Section ─── */}
+      {/* Explains the user journey in a clear, card-based layout. */}
       <section style={{ padding: '100px 40px', maxWidth: '1100px', margin: '0 auto' }}>
         <div style={{ maxWidth: '730px' }}>
           <div style={{ fontSize: '13.5px', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#6C3CE0', marginBottom: '18px' }}>How it works</div>
@@ -145,7 +162,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── VERIFIABLE CREDENTIALS (Light Section) ── */}
+      {/* ─── Verifiable Credentials Section ─── */}
+      {/* Displays a demo of the core platform feature (Proof of Work) using the reusable CredentialCard component. */}
       <section style={{ position: 'relative', background: '#F8F6FF', color: '#1C1233', padding: '104px 40px', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', top: '-100px', right: '-80px', width: '480px', height: '480px', borderRadius: '50%', background: 'radial-gradient(circle, rgba(124,77,255,0.08), transparent 65%)', filter: 'blur(30px)', animation: 'kzOrb 18s ease-in-out infinite' }} />
         
@@ -203,7 +221,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── CTA ── */}
+      {/* ─── CTA Section ─── */}
+      {/* Strong closing call-to-action utilizing gradients to draw the eye. */}
       <section style={{ padding: '104px 40px' }}>
         <div style={{ maxWidth: '1000px', margin: '0 auto', background: 'linear-gradient(135deg,#2B1364,#6C3CE0)', borderRadius: '32px', padding: '68px 48px', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
           <div style={{ position: 'absolute', top: '-80px', right: '-60px', width: '300px', height: '300px', borderRadius: '50%', background: 'radial-gradient(circle, rgba(255,139,194,0.5), transparent 68%)', filter: 'blur(20px)', animation: 'kzOrb 17s ease-in-out infinite' }} />
@@ -227,7 +246,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── EXTENDED FOOTER ── */}
+      {/* ─── Extended Footer ─── */}
+      {/* Contains platform links, legal, and social items. */}
       <footer style={{ borderTop: '1px solid rgba(28,18,51,0.08)', padding: '64px 40px', background: '#F8F6FF' }}>
         <div style={{ maxWidth: '1240px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '48px', paddingBottom: '48px' }}>
           <div>

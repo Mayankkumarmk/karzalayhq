@@ -1,5 +1,18 @@
 "use client";
 
+/* ═══════════════════════════════════════════
+ * File: app/talent/page.jsx
+ * Purpose: A global leaderboard ("Talent Board") ranking users by their sprint contributions.
+ * Design Decisions:
+ * - Complex, highly styled UI using Framer Motion for entrance animations.
+ * - Custom Podium layout for top 3 builders.
+ * - Table layout for the rest of the users.
+ * Tokens Used:
+ * - GREEN, YELLOW, ORANGE for attendance bar thresholds.
+ * Component Connections:
+ * - Links to /profile/[id] for user credential views.
+ * ═══════════════════════════════════════════ */
+
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";

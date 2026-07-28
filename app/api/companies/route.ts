@@ -1,6 +1,10 @@
 import { NextResponse } from 'next/server';
 
-// Mock company data — replace with real DB/API later
+// ══════════════════════════════════════════════════════════════════════════
+// BACKEND DEVELOPER INTEGRATION:
+// Here is the mock data. By this, these are the things that are redirecting to the next steps.
+// Replace this hardcoded companies array with a database query retrieving all active companies from the database.
+// ══════════════════════════════════════════════════════════════════════════
 const companies = [
   { id: '1',  name: 'Acme Corp',        city: 'Mumbai',    memberCount: 12, sprintWeek: 'W7' },
   { id: '2',  name: 'Beta Ventures',    city: 'Delhi',     memberCount: 8,  sprintWeek: 'W7' },

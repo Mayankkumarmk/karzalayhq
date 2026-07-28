@@ -1,5 +1,17 @@
 'use client';
 
+/* ═══════════════════════════════════════════
+ * File: context/AuthContext.tsx
+ * Purpose: Provides a global React Context for authentication state management.
+ * Design Decisions:
+ * - Exposes high-level methods (login, register, logout, fetchUser) that interact with the Next.js API routes.
+ * - Manages an `isLoading` state to defer rendering of protected content until session validation completes.
+ * Tokens Used: N/A (State layer only)
+ * Component Connections:
+ * - Wraps the entire application in layout.tsx.
+ * - Consumed via `useAuth()` hook throughout the app.
+ * ═══════════════════════════════════════════ */
+
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 
 interface User {
@@ -26,6 +38,13 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   // isLoading = true while we check for an existing session on mount
   const [isLoading, setIsLoading] = useState(true);
 
+  // ══════════════════════════════════════════════════════════════════════════
+  // BACKEND DEVELOPER INTEGRATION CORNER:
+  // To connect this frontend with your real separate backend (e.g. running on port 3001 or staging):
+  // 1. Replace the API_BASE constant below with your server URL.
+  //    Example: const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api/auth';
+  // 2. Ensure CORS is enabled on the backend server for your frontend domain.
+  // ══════════════════════════════════════════════════════════════════════════
   const API_BASE = '/api/auth';
 
   const fetchUser = async () => {

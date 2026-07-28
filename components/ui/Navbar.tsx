@@ -1,5 +1,18 @@
 'use client';
 
+/* ═══════════════════════════════════════════
+ * File: components/ui/Navbar.tsx
+ * Purpose: Global navigation header for the application.
+ * Design Decisions:
+ * - Sticky positioning with backdrop-blur for a modern floating glassmorphism effect.
+ * - Responsive design conditionally showing a hamburger menu on mobile and hiding desktop nav.
+ * Tokens Used:
+ * - Hardcoded rgba styles for the blur background to ensure compatibility.
+ * Component Connections:
+ * - Pulls authentication state from AuthContext.
+ * - Conditionally renders the LogoutButton.
+ * ═══════════════════════════════════════════ */
+
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { useAuth } from '@/context/AuthContext';
@@ -54,8 +67,6 @@ export function Navbar() {
             <>
               {user ? (
                 <>
-                  <Link href="/dashboard/sprint" style={{ textDecoration: 'none', color: '#5A5270', fontSize: '15px', fontWeight: 500 }}>Sprint</Link>
-                  <Link href="/dashboard/standup" style={{ textDecoration: 'none', color: '#5A5270', fontSize: '15px', fontWeight: 500 }}>Standup</Link>
                   <Link href="/dashboard" style={{ textDecoration: 'none', color: '#5A5270', fontSize: '15px', fontWeight: 500 }}>Dashboard</Link>
                   <LogoutButton />
                 </>
@@ -106,8 +117,6 @@ export function Navbar() {
             <>
               {user ? (
                 <>
-                  <li><Link href="/dashboard/sprint" onClick={toggleMobileMenu}>Active Sprint</Link></li>
-                  <li><Link href="/dashboard/standup" onClick={toggleMobileMenu}>Standup</Link></li>
                   <li><Link href="/profile" onClick={toggleMobileMenu}>Profile</Link></li>
                   <li><Link href="/dashboard" onClick={toggleMobileMenu}>Dashboard</Link></li>
                   <li>

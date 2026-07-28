@@ -1,5 +1,20 @@
 "use client";
 
+/* ═══════════════════════════════════════════
+ * File: app/onboarding/page.jsx
+ * Purpose: Manages the onboarding flow for new users, routing them through profile setup, role selection, and initial tasks.
+ * Design Decisions:
+ * - Multi-step wizard layout with Framer Motion for smooth state transitions.
+ * - Glassmorphism UI (GlassCard) for a modern, lightweight feel.
+ * - Uses Next.js App Router and context for user state.
+ * Tokens Used:
+ * - Purples (PURPLE, PURPLE_SOFT, gradientBg) for step highlights and active states.
+ * - Greens (GREEN, GREEN_SOFT) for success states and checkmarks.
+ * Component Connections:
+ * - Reads from AuthContext via useAuth() to check and update the current user.
+ * - Interacts with /api/onboarding and /api/users to sync progress.
+ * ═══════════════════════════════════════════ */
+
 import React, { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";

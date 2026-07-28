@@ -1,5 +1,17 @@
 'use client';
 
+/* ═══════════════════════════════════════════
+ * File: components/OnboardingGuard.tsx
+ * Purpose: Client-side routing wrapper to enforce onboarding completion before accessing protected routes.
+ * Design Decisions:
+ * - Performs an asynchronous status check to `/api/onboarding/status`.
+ * - Redirects to `/onboarding` if incomplete, or `/` if trying to re-run it when completed.
+ * Tokens Used:
+ * - Uses var(--background) and global .kz-badge for the loading state.
+ * Component Connections:
+ * - Wraps most Dashboard and restricted routes.
+ * ═══════════════════════════════════════════ */
+
 import { useEffect, useState } from 'react';
 import { useRouter, usePathname, useSearchParams } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
