@@ -23,6 +23,9 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
 
+    env:
+     DATABASE_URL: ${{ secrets.DATABASE_URL }}
+
     strategy:
       matrix:
         node-version: [22]
