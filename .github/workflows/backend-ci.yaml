@@ -19,7 +19,7 @@ permissions:
 
 jobs:
   build:
-    name: Build Backend
+    name: Build-Backend
     runs-on: ubuntu-latest
     timeout-minutes: 15
 
