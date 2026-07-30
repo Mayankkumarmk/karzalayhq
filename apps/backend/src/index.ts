@@ -16,7 +16,7 @@ server.register(session, {
 })
 
 server.get('/health', async (request, reply) => {
-  return { status: 'ok' }
+  return { status: 'ok', version: '1' }
 })
 
 import authRoutes from './routes/auth'
