@@ -35,7 +35,7 @@ jobs:
         working-directory: ./apps/backend
 
     steps:
-      - name: Checkout Repository
+      - name: Checkout-Repository
         uses: actions/checkout@v4
 
       - name: Setup Node.js
