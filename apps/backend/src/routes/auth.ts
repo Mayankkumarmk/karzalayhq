@@ -1,6 +1,7 @@
 import { FastifyInstance, FastifyRequest, FastifyReply } from 'fastify'
 import bcrypt from 'bcrypt'
 import { $Enums } from '../generated/prisma/client'
+import { isValidEmail, isValidPassword, isValidRole } from '../lib/validation'
 
 declare module 'fastify' {
   interface Session {
@@ -8,8 +9,6 @@ declare module 'fastify' {
   }
 }
 
-const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-const VALID_ROLES = ['MEMBER', 'LEAD'] as const
 const SALT_ROUNDS = 10
 
 async function register(request: FastifyRequest, reply: FastifyReply) {
@@ -24,15 +23,15 @@ async function register(request: FastifyRequest, reply: FastifyReply) {
     return reply.status(400).send({ error: 'name, email, and password are required' })
   }
 
-  if (!EMAIL_REGEX.test(email)) {
+  if (!isValidEmail(email)) {
     return reply.status(400).send({ error: 'Invalid email format' })
   }
 
-  if (password.length < 8) {
+  if (!isValidPassword(password)) {
     return reply.status(400).send({ error: 'Password must be at least 8 characters' })
   }
 
-  if (role && !VALID_ROLES.includes(role as typeof VALID_ROLES[number])) {
+  if (role && !isValidRole(role)) {
     return reply.status(400).send({ error: 'Role must be MEMBER or LEAD' })
   }
 
