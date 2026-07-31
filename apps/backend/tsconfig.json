@@ -1,15 +1,15 @@
 {
   "compilerOptions": {
-    "target": "es2017",   //compliles typescript down to javascript that Node,js understands
+    "target": "es2017", //compliles typescript down to javascript that Node,js understands
     "module": "commonjs", //Node.js uses CommonJS modules, this tells TypeScript to match that
-    "rootDir": "./src",  //TypeScript source files live here
-    "outDir": "./dist",  //compiled JavaScript output goes here
-    "strict": true,      //catches more errors while we write code, good habit
+    "rootDir": "./src", //TypeScript source files live here
+    "outDir": "./dist", //compiled JavaScript output goes here
+    "strict": true, //catches more errors while we write code, good habit
     "esModuleInterop": true, //lets you write import Fastify from 'fastify' cleanly
-    "skipLibCheck": true,    //skips type checking on installed packages, speeds things up
+    "skipLibCheck": true, //skips type checking on installed packages, speeds things up
     "forceConsistentCasingInFileNames": true,
     "sourceMap": true
   },
   "include": ["src/**/*.ts"],
-  "exclude": ["node_modules", "dist"]      //tells TypeScript exactly which files to compile and which to ignore
+  "exclude": ["node_modules", "dist"] //tells TypeScript exactly which files to compile and which to ignore
 }
