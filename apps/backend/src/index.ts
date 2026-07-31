@@ -15,8 +15,8 @@ server.register(session, {
   cookie: { secure: false, httpOnly: true, sameSite: 'lax' },
 })
 
-server.get('/health', async () => {
-  return { status: 'ok' }
+server.get('/health', async (request, reply) => {
+  return { status: 'ok', version: '1' }
 })
 
 import authRoutes from './routes/auth'
