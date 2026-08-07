@@ -2,12 +2,7 @@ import { FastifyInstance, FastifyRequest, FastifyReply } from 'fastify'
 import bcrypt from 'bcrypt'
 import { $Enums } from '../generated/prisma/client'
 import { isValidEmail, isValidPassword, isValidRole } from '../lib/validation'
-
-declare module 'fastify' {
-  interface Session {
-    userId: string
-  }
-}
+import { requireAuth } from '../middleware/auth'
 
 const SALT_ROUNDS = 10
 
@@ -98,29 +93,14 @@ async function logout(request: FastifyRequest, reply: FastifyReply) {
 }
 
 async function me(request: FastifyRequest, reply: FastifyReply) {
-  if (!request.session.userId) {
-    return reply.status(401).send({ error: 'Not authenticated' })
-  }
-
-  const user = await request.server.prisma.user.findUnique({
-    where: { id: request.session.userId },
-  })
-
-  if (!user) {
-    return reply.status(401).send({ error: 'Not authenticated' })
-  }
-
-  return reply.status(200).send({
-    id: user.id,
-    name: user.name,
-    email: user.email,
-    role: user.role,
-  })
+  // requireAuth has already loaded and validated the user.
+  const { id, name, email, role } = request.user!
+  return reply.status(200).send({ id, name, email, role })
 }
 
 export default async function authRoutes(fastify: FastifyInstance) {
   fastify.post('/register', register)
   fastify.post('/login', login)
   fastify.post('/logout', logout)
-  fastify.get('/me', me)
+  fastify.get('/me', { preHandler: requireAuth }, me)
 }
