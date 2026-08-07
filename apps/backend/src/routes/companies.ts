@@ -112,7 +112,9 @@ async function updateCompany(request: FastifyRequest, reply: FastifyReply) {
       return reply.status(400).send({ error: 'name cannot be empty' })
     }
     if (name.trim().length > MAX_NAME_LENGTH) {
-      return reply.status(400).send({ error: `name must be ${MAX_NAME_LENGTH} characters or fewer` })
+      return reply
+        .status(400)
+        .send({ error: `name must be ${MAX_NAME_LENGTH} characters or fewer` })
     }
   }
 
