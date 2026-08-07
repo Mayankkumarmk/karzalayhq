@@ -17,11 +17,38 @@ enum UserRole {
 }
 
 model User {
-  id        String   @id @default(cuid())
-  email     String   @unique
-  name      String
-  password  String
-  role      UserRole @default(MEMBER)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id          String       @id @default(cuid())
+  email       String       @unique
+  name        String
+  password    String
+  role        UserRole     @default(MEMBER)
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  memberships Membership[]
+}
+
+model Company {
+  id          String       @id @default(cuid())
+  name        String
+  description String?
+  city        String?
+  createdAt   DateTime     @default(now())
+  memberships Membership[]
+}
+
+model Membership {
+  id        String         @id @default(cuid())
+  userId    String
+  companyId String
+  role      MembershipRole @default(MEMBER)
+  joinedAt  DateTime       @default(now())
+  user      User           @relation(fields: [userId], references: [id])
+  company   Company        @relation(fields: [companyId], references: [id])
+
+  @@unique([userId, companyId])
+}
+
+enum MembershipRole {
+  MEMBER
+  LEAD
 }

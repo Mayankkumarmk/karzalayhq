@@ -22,6 +22,9 @@ server.get('/health', async (request, reply) => {
 import authRoutes from './routes/auth'
 server.register(authRoutes, { prefix: '/auth' })
 
+import companyRoutes from './routes/companies'
+server.register(companyRoutes, { prefix: '/companies' })
+
 const start = async () => {
   try {
     const port = Number(process.env.PORT) || 3001
