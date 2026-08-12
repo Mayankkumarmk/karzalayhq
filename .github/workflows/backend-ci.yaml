@@ -24,7 +24,10 @@ jobs:
     timeout-minutes: 15
 
     env:
-     DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      # CI only runs `prisma generate`, typecheck, lint and unit tests — none of
+      # which connect to a database. A dummy URL keeps the real secret out of
+      # fork PR runs (where GitHub would not provide it anyway).
+      DATABASE_URL: postgresql://postgres:postgres@localhost:5432/ci
 
     strategy:
       matrix:
